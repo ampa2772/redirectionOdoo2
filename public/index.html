@@ -1,25 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b5cff" />
-    <meta name="description" content="Bernay Ville d’Avenir — Site du projet : accueil, événements, cohésion, bilan." />
-    <title>Bernay Ville d’Avenir</title>
-    <style>
-      :root{--bg:#0b1020;--card:#121a2a;--muted:#8aa0c8;--text:#eaf1ff;--accent:#0b5cff;}
-      html,body,#root{height:100%}
-      body {
-    margin: 0;
-    background: #fabb31;
-    color: var(--text);
-    font: 15px / 1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
-}
-      a{color:inherit}
-    </style>
+    <meta name="theme-color" content="#000000" />
+
+    <title>Bernay Ville d’Avenir – Redirection vers le site officiel</title>
+
+    <!-- Redirection immédiate vers le site Odoo -->
+    <meta
+      http-equiv="refresh"
+      content="0; url=https://bernay-ville-davenir4.odoo.com"
+    />
+
+    <!-- Redirection JavaScript (plus fiable que le meta seul) -->
+    <script>
+      (function () {
+        var target = "https://bernay-ville-davenir4.odoo.com";
+
+        try {
+          // window.location.replace ne garde pas l’URL GitHub dans l’historique
+          if (window.location.href !== target) {
+            window.location.replace(target);
+          }
+        } catch (e) {
+          // Fallback au cas où replace serait bloqué
+          window.location.href = target;
+        }
+      })();
+    </script>
+
+    <!-- Meta par défaut de Create React App (peut rester, même si React ne sert plus vraiment) -->
+    <meta
+      name="description"
+      content="Bernay Ville d’Avenir – redirection automatique vers le site officiel."
+    />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
   <body>
-    <noscript>Ce site a besoin de JavaScript.</noscript>
-    <div id="root"></div>
+    <noscript>
+      Vous devriez être redirigé automatiquement vers le site officiel.
+      <br />
+      Si ce n’est pas le cas, veuillez cliquer sur ce lien :
+      <a href="https://bernay-ville-davenir4.odoo.com">
+        https://bernay-ville-davenir4.odoo.com
+      </a>
+      .
+    </noscript>
+
+    <!--
+      Le div #root existe toujours pour être compatible avec la structure
+      Create React App, mais le contenu affiché ici sera très bref car la
+      redirection intervient immédiatement.
+    -->
+    <div id="root">
+      <p>Redirection en cours vers le site officiel…</p>
+      <p>
+        Si la redirection ne se fait pas automatiquement,
+        <a href="https://bernay-ville-davenir4.odoo.com">
+          cliquez ici pour accéder au site.
+        </a>
+      </p>
+    </div>
   </body>
 </html>
