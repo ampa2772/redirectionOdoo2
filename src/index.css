@@ -1,0 +1,599 @@
+/* =========================
+   Sticky Footer & App Layout
+   ========================= */
+html,
+body {
+  height: 100%;
+  /* Assure que html et body prennent toute la hauteur */
+  margin: 0;
+  background-color: #f3b61c;
+  /* Ajout du fond "or" du site original */
+}
+
+#root,
+.app-layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Hauteur minimale de la fenêtre */
+}
+
+.app-content-wrapper {
+  flex-grow: 1;
+  /* Fait en sorte que cette zone pousse le footer vers le bas */
+}
+
+/* =========================
+   Variables & Reset
+   ========================= */
+:root {
+  /* Palette cohérente avec la page d'accueil (bleu, vert, orange) */
+  --blue: #134d75;
+  --blue-2: #0b3c5d;
+  --green: #4aae4d;
+  --green-2: #1bbf7a;
+  --orange: #ff8a00;
+  --muted: #bfc7d6;
+  --text: #ffffff;
+  --accent: var(--orange);
+}
+
+* {
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  color: inherit;
+}
+
+/* Conteneur global */
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+/* Boutons primaires */
+.btn {
+  display: inline-flex; /* Changé en inline-flex pour aligner les icônes */
+  align-items: center;
+  gap: 0.5rem; /* Espace entre icône et texte */
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  transition: transform 0.05s ease-in-out, opacity 0.2s ease-in-out;
+  border: 0;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* =========================
+   Barre de navigation
+   ========================= */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--green);
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  /* S'assure qu'il prend toute la largeur */
+  /* Remplace l'ancien 'container' par un padding géré ici */
+  padding: 0.6rem 4vw;
+  margin: 0 auto;
+}
+
+/* Marque + logo */
+.brand {
+  display: flex;
+  align-items: center;
+}
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: #fff;
+}
+.brand-title {
+  font-size: 1.65rem;
+  font-style: italic;
+  color: #fff;
+  white-space: nowrap;
+  /* Ajouté : Force le titre sur une seule ligne */
+}
+
+/* Ancien badge de couleur (laissé pour compat mais non utilisé) */
+.brand-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #0b5cff, #00c2ff);
+}
+
+/* Logo officiel : taille et style revus */
+.brand-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #ffffff;
+  display: block;
+  image-rendering: auto;
+  flex-shrink: 0;
+  padding: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu principal (Desktop) */
+.menu {
+  display: flex;
+  gap: 0.2rem;
+  /* Espacement réduit pour tout faire tenir */
+  flex-wrap: nowrap;
+  /* Force le menu sur une seule ligne */
+  align-items: center;
+}
+.menu a {
+  padding: 0.5rem 0.6rem;
+  /* Padding horizontal réduit */
+  border-radius: 9px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  /* Police légèrement réduite */
+  white-space: nowrap; /* Empêche les liens de se couper */
+}
+.menu a.active,
+.menu a:hover {
+  color: #007bff;
+  /* Texte bleu au survol/actif */
+  background: rgba(0, 123, 255, 0.08);
+}
+
+/* Bouton Hamburger */
+.menu-toggle {
+  display: none;
+  /* Caché par défaut (desktop) */
+  flex-direction: column;
+  gap: 5px; /* Espace entre les barres */
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Empêche le bouton de rétrécir */
+  z-index: 20; /* Au-dessus du menu */
+}
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* Animation du bouton Hamburger en "X" */
+.menu-toggle.is-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.is-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================
+   Responsive Nav (Mobile)
+   ========================= */
+/* On utilise 1100px car c'est la largeur max du .container */
+@media (max-width: 1100px) {
+  .brand-title {
+    font-size: 1.35rem;
+    /* Réduire le titre sur mobile */
+  }
+
+  .menu-toggle {
+    display: flex;
+    /* Afficher le bouton hamburger */
+  }
+
+  .menu {
+    display: none;
+    /* Cacher le menu par défaut */
+    flex-direction: column;
+    width: 100%;
+    background: var(--green);
+    position: absolute;
+    /* 89.2px = 70px logo + 2* (0.6rem * 16px) padding */
+    top: 89.2px;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 4vw; /* Utilise le padding 92vw/4vw */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 0.5rem; /* Espacement vertical entre les liens */
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .menu.is-open {
+    display: flex; /* Afficher le menu si ouvert */
+  }
+
+  .menu a {
+    padding: 0.75rem 0.5rem;
+    /* Plus grande zone de clic */
+    font-size: 19px;
+    /* Rétablir la taille de police */
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* =========================
+   En-tête avec image de fond
+   ========================= */
+.header {
+  position: relative;
+  padding: clamp(70px, 12vw, 140px) 0;
+  background-image: url("./Images/bernay.png");
+  background-size: cover;
+  background-position: center center;
+  color: #ffffff;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 20, 35, 0.55);
+  z-index: 1;
+}
+.header .container {
+  position: relative;
+  z-index: 2;
+}
+.header h1 {
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+.header .lead {
+  color: #f0f0f0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* =========================
+   Grille & cartes
+   ========================= */
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+}
+.card {
+  background: var(--blue);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.5rem; /* Augmentation du padding pour un meilleur look */
+  color: var(--text);
+}
+
+/* =========================
+   Pied de page
+   ========================= */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  background: var(--blue-2);
+}
+footer .links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+footer .links a {
+  color: #fff;
+  text-decoration: none;
+}
+footer .links a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Titres et textes
+   ========================= */
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+}
+h1 {
+  font-size: clamp(28px, 4.5vw, 44px);
+}
+h2 {
+  font-size: clamp(20px, 3vw, 28px);
+}
+.lead {
+  font-size: clamp(16px, 2.2vw, 18px);
+}
+.section {
+  padding: 28px 0;
+  color: var(--text);
+}
+
+/* Étiquettes */
+.tag {
+  font-size: 12px;
+  color: #a8b7da;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Ajustements subtils pour alignement vertical du logo + texte */
+.brand img.brand-logo {
+  transform: translateY(-0.5px);
+}
+
+/* =========================
+   Listes d'événements & galerie
+   ========================= */
+.events-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.events-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+.events-list li:last-child {
+  border-bottom: none;
+}
+.events-list .date {
+  font-weight: 700;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0c1a2a;
+}
+
+/* =========================
+   Mini calendrier (Agenda)
+   ========================= */
+.calendar {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.calendar .cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+.calendar .cal-nav button {
+  border: 0;
+  background: var(--green);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+.calendar .grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.35rem;
+}
+.calendar .day {
+  background: rgba(255, 255, 255, 0.04);
+  min-height: 80px;
+  border-radius: 10px;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.calendar .day .d {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.calendar .day .evt {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15rem 0.3rem;
+  border-radius: 6px;
+}
+
+/* =========================
+   Formulaires simples (Boîte à idées / Contact)
+   ========================= */
+.form {
+  display: grid;
+  gap: 0.65rem;
+}
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #0e2236;
+  color: #fff;
+  outline: none;
+}
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #a8b7da;
+}
+.form button {
+  align-self: start;
+}
+
+/* =================================== */
+/* == NOUVEAUX STYLES - PAGE BILAN == */
+/* =================================== */
+
+.bilan-list {
+  display: grid;
+  gap: 1.5rem; /* Plus d'espace entre les cartes */
+  margin-top: 1rem;
+}
+
+/* Titre dans une carte bilan */
+.bilan-item-content h3 {
+  font-size: 1.75rem; /* Titre plus grand */
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+/* Paragraphe dans une carte bilan */
+.bilan-item-content p {
+  color: var(--text);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Conteneur pour les liens (s'il y en a) */
+.bilan-links {
+  margin-top: 1rem;
+}
+
+/* Grille standard (Texte / Image) */
+.bilan-item-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Inversion pour layout "text-right" */
+.bilan-item-grid.layout-text-right .bilan-item-content {
+  order: 2;
+}
+.bilan-item-grid.layout-text-right .bilan-item-media {
+  order: 1;
+}
+
+/* Styles pour les médias (images) */
+.bilan-item-media a,
+.bilan-item-media div {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden; /* Assure que l'image respecte le radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bilan-item-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 10; /* Format d'image cohérent */
+  object-fit: cover;
+  transition: transform 0.3s ease-out;
+}
+
+/* Effet au survol si l'image est cliquable */
+.bilan-item-media a:hover .bilan-item-image {
+  transform: scale(1.05);
+}
+
+/* Cas spécial : 1. Gare */
+.bilan-item-gare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.bilan-item-gare .bilan-item-content {
+  grid-column: span 1;
+}
+
+.bilan-item-gare .bilan-links-gare {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.bilan-item-gare .btn-video {
+  background: #c00; /* Rouge YouTube */
+}
+.bilan-item-gare .btn-video:hover {
+  background: #e62117;
+}
+
+/* L'image de la gare prend toute la largeur en dessous */
+.bilan-item-gare .bilan-item-media {
+  grid-column: 1 / -1; /* S'étend sur les 2 colonnes */
+  margin-top: 1rem;
+}
+
+/* --- Responsive pour la page Bilan --- */
+@media (max-width: 800px) {
+  /* Passe les grilles Texte/Image en 1 colonne */
+  .bilan-item-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Annule l'inversion sur mobile */
+  .bilan-item-grid.layout-text-right .bilan-item-content {
+    order: 1;
+  }
+  .bilan-item-grid.layout-text-right .bilan-item-media {
+    order: 2;
+  }
+
+  /* Passe la grille de la Gare en 1 colonne */
+  .bilan-item-gare {
+    grid-template-columns: 1fr;
+  }
+  .bilan-item-gare .bilan-item-content,
+  .bilan-item-gare .bilan-links-gare {
+    grid-column: span 1;
+  }
+  .bilan-item-gare .bilan-links-gare {
+    flex-direction: row; /* Met les boutons côte à côte */
+    flex-wrap: wrap;
+  }
+}
