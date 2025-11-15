@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Site_CampagneMW2026/static/css/main.7512db8e.css",
-    "main.js": "/Site_CampagneMW2026/static/js/main.bd3cda8b.js",
-    "static/media/Gen-4 the camera moves forward like a drone 1587114135.mp4": "/Site_CampagneMW2026/static/media/Gen-4 the camera moves forward like a drone 1587114135.48ffb2f036928e8f848a.mp4",
-    "static/media/bernay.png": "/Site_CampagneMW2026/static/media/bernay.fab813f8f6daf1bb19ce.png",
-    "static/media/chaufferie.jpg": "/Site_CampagneMW2026/static/media/chaufferie.4c4cc955b181816e23fc.jpg",
-    "static/media/Casiers.jpg": "/Site_CampagneMW2026/static/media/Casiers.346f41261ce442e3251a.jpg",
-    "static/media/PAT.jpg": "/Site_CampagneMW2026/static/media/PAT.12444fcd142c83a01271.jpg",
-    "static/media/Bourg-le-Comte.jpg": "/Site_CampagneMW2026/static/media/Bourg-le-Comte.c09d802d2103bf72c7dc.jpg",
-    "static/media/PrairieCharentonne.png": "/Site_CampagneMW2026/static/media/PrairieCharentonne.a745d4df06fdc1560629.png",
-    "static/media/quartier_de_gare.png": "/Site_CampagneMW2026/static/media/quartier_de_gare.f32d264a6646b2ad8335.png",
-    "static/media/JulesFerry.png": "/Site_CampagneMW2026/static/media/JulesFerry.8762990e58bb40ba6b14.png",
-    "static/media/Maison_Enfant.jpg": "/Site_CampagneMW2026/static/media/Maison_Enfant.693ae34316042d4a5f3e.jpg",
-    "static/media/Hôtel_de_la_gabelle_Bernay.jpg": "/Site_CampagneMW2026/static/media/Hôtel_de_la_gabelle_Bernay.4824b17e144933c9d901.jpg",
-    "static/media/logo.png": "/Site_CampagneMW2026/static/media/logo.456b844e3663162ef196.png",
-    "static/media/MuséeBernay.jpg": "/Site_CampagneMW2026/static/media/MuséeBernay.1f38fc1b3bd1c2526c4e.jpg",
-    "index.html": "/Site_CampagneMW2026/index.html",
-    "main.7512db8e.css.map": "/Site_CampagneMW2026/static/css/main.7512db8e.css.map",
-    "main.bd3cda8b.js.map": "/Site_CampagneMW2026/static/js/main.bd3cda8b.js.map"
+    "main.css": "/redirectionOdoo2/static/css/main.59d05368.css",
+    "main.js": "/redirectionOdoo2/static/js/main.273d772e.js",
+    "static/media/Gen-4 the camera moves forward like a drone 1587114135.mp4": "/redirectionOdoo2/static/media/Gen-4 the camera moves forward like a drone 1587114135.48ffb2f036928e8f848a.mp4",
+    "static/media/bernay.png": "/redirectionOdoo2/static/media/bernay.fab813f8f6daf1bb19ce.png",
+    "static/media/chaufferie.jpg": "/redirectionOdoo2/static/media/chaufferie.4c4cc955b181816e23fc.jpg",
+    "static/media/Casiers.jpg": "/redirectionOdoo2/static/media/Casiers.346f41261ce442e3251a.jpg",
+    "static/media/PAT.jpg": "/redirectionOdoo2/static/media/PAT.12444fcd142c83a01271.jpg",
+    "static/media/Bourg-le-Comte.jpg": "/redirectionOdoo2/static/media/Bourg-le-Comte.c09d802d2103bf72c7dc.jpg",
+    "static/media/PrairieCharentonne.png": "/redirectionOdoo2/static/media/PrairieCharentonne.a745d4df06fdc1560629.png",
+    "static/media/quartier_de_gare.png": "/redirectionOdoo2/static/media/quartier_de_gare.f32d264a6646b2ad8335.png",
+    "static/media/JulesFerry.png": "/redirectionOdoo2/static/media/JulesFerry.8762990e58bb40ba6b14.png",
+    "static/media/Maison_Enfant.jpg": "/redirectionOdoo2/static/media/Maison_Enfant.693ae34316042d4a5f3e.jpg",
+    "static/media/Hôtel_de_la_gabelle_Bernay.jpg": "/redirectionOdoo2/static/media/Hôtel_de_la_gabelle_Bernay.4824b17e144933c9d901.jpg",
+    "static/media/logo.png": "/redirectionOdoo2/static/media/logo.456b844e3663162ef196.png",
+    "static/media/MuséeBernay.jpg": "/redirectionOdoo2/static/media/MuséeBernay.1f38fc1b3bd1c2526c4e.jpg",
+    "index.html": "/redirectionOdoo2/index.html",
+    "main.59d05368.css.map": "/redirectionOdoo2/static/css/main.59d05368.css.map",
+    "main.273d772e.js.map": "/redirectionOdoo2/static/js/main.273d772e.js.map"
   },
   "entrypoints": [
-    "static/css/main.7512db8e.css",
-    "static/js/main.bd3cda8b.js"
+    "static/css/main.59d05368.css",
+    "static/js/main.273d772e.js"
   ]
 }
